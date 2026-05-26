@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — Bouteille</title>
+  <meta name="description" content="The story behind Bouteille — five friends, one conviction, and a neighbourhood wine bar with soul in Stockel, Brussels.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍷</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <div class="curtain" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="logo.png" alt="Bouteille" class="nav__logo-img" width="36" height="36">
+      <span class="nav__logo-text">Bouteille</span>
+    </a>
+    <div class="nav__links">
+      <a href="wines.html" class="nav__link" data-i18n="navWines">Wines</a>
+      <a href="food.html" class="nav__link" data-i18n="navFood">Menu</a>
+      <a href="events.html" class="nav__link" data-i18n="navEvents">Events</a>
+      <a href="about.html" class="nav__link" data-i18n="navAbout">About</a>
+      <a href="contact.html" class="nav__link" data-i18n="navContact">Contact</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__lang">
+        <button class="nav__lang-btn active" data-lang="en">EN</button>
+        <span class="nav__lang-sep"></span>
+        <button class="nav__lang-btn" data-lang="fr">FR</button>
+        <span class="nav__lang-sep"></span>
+        <button class="nav__lang-btn" data-lang="nl">NL</button>
+      </div>
+      <a href="reservations.html" class="nav__cta" data-i18n="reserve">Reserve</a>
+    </div>
+    <button class="nav__hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="wines.html" class="nav__overlay-link" data-i18n="navWines">Wines</a>
+    <a href="food.html" class="nav__overlay-link" data-i18n="navFood">Menu</a>
+    <a href="events.html" class="nav__overlay-link" data-i18n="navEvents">Events</a>
+    <a href="about.html" class="nav__overlay-link" data-i18n="navAbout">About</a>
+    <a href="reservations.html" class="nav__overlay-link" data-i18n="navReserve">Reserve</a>
+    <a href="contact.html" class="nav__overlay-link" data-i18n="navContact">Contact</a>
+    <div class="nav__overlay-lang">
+      <button class="nav__overlay-lang-btn active" data-lang="en">EN</button>
+      <button class="nav__overlay-lang-btn" data-lang="fr">FR</button>
+      <button class="nav__overlay-lang-btn" data-lang="nl">NL</button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ── Page Header ── -->
+    <header class="page-header">
+      <div class="container">
+        <h1 class="page-header__title reveal" data-delay="0" data-i18n="aboutTitle">Our Story</h1>
+        <p class="page-header__sub reveal" data-delay="1" data-i18n="aboutSub">Five friends, one conviction: that a neighbourhood deserves a wine bar with soul.</p>
+      </div>
+    </header>
+
+    <!-- ── Editorial Section ── -->
+    <section class="section">
+      <div class="container">
+        <div class="split--offset">
+          <div class="editorial">
+
+            <p class="reveal" data-delay="0">Bouteille started the way most good things do — over a bottle of wine and a conversation that went on too long. Five friends, each with their own relationship to wine, their own reasons for caring about it, and a shared frustration: that their neighbourhood didn't have a place that felt right.</p>
+
+            <p class="reveal" data-delay="1">Not a wine shop with fluorescent lights and a wall of Bordeaux you can't afford. Not a trendy bar where the staff make you feel stupid for not knowing what pét-nat is. Something in between. Something honest.</p>
+
+            <blockquote class="pullquote reveal" data-delay="2">
+              "Il faut que les gens se sentent à l'aise et qu'ils soient bien conseillés."
+              <span class="pullquote__attr">Eric Daive</span>
+            </blockquote>
+
+            <p class="reveal" data-delay="3">Bouteille is that place. A bar where the wines are chosen with care and priced with honesty. Where the staff know everything and show off nothing. Where the menu changes when the seasons do. Where Monday nights sometimes mean you bring the bottle and we'll handle the rest.</p>
+
+            <blockquote class="pullquote reveal" data-delay="4">
+              "Comfy, warm light sphere. Relaxed staff, always welcoming, eager to discuss about the new products."
+              <span class="pullquote__attr">François Dangoisse</span>
+            </blockquote>
+
+            <p class="reveal" data-delay="5">We're in Stockel because it's home. Place Dumon, the Saturday market, the neighbourhood regulars who become friends — that's what this is about. A wine bar for the people who live here, and for anyone who finds their way through the door.</p>
+
+          </div>
+
+          <div class="reveal" data-delay="2">
+            <div style="aspect-ratio: 3/4; background: var(--deep-zinc);"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Team ── -->
+    <section class="section--compact">
+      <div class="container">
+        <span class="t-label reveal" data-delay="0">The Team</span>
+        <div class="spacer-md"></div>
+        <div class="team-grid">
+
+          <div class="team-member reveal" data-delay="1">
+            <div class="team-member__photo"></div>
+            <h3 class="team-member__name">Henri Moncheur</h3>
+            <span class="team-member__role">Founder</span>
+          </div>
+
+          <div class="team-member reveal" data-delay="2">
+            <div class="team-member__photo"></div>
+            <h3 class="team-member__name">Eric Daive</h3>
+            <span class="team-member__role">Founder</span>
+          </div>
+
+          <div class="team-member reveal" data-delay="3">
+            <div class="team-member__photo"></div>
+            <h3 class="team-member__name">Thibault Marie</h3>
+            <span class="team-member__role">Founder</span>
+          </div>
+
+          <div class="team-member reveal" data-delay="4">
+            <div class="team-member__photo"></div>
+            <h3 class="team-member__name">Sofia Louis</h3>
+            <span class="team-member__role">Founder</span>
+          </div>
+
+          <div class="team-member reveal" data-delay="5">
+            <div class="team-member__photo"></div>
+            <h3 class="team-member__name">François Dangoisse</h3>
+            <span class="team-member__role">Founder</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Philosophy ── -->
+    <section class="section--deep">
+      <div class="container--narrow text-center" style="padding: var(--sp-9) var(--margin);">
+        <div class="editorial">
+          <blockquote class="pullquote reveal" data-delay="0" style="border-left: none; text-align: center; padding-left: 0;">
+            "Une personne au style discret au premier abord mais raffinée quand l'on pousse le regard, élégante, instruite et sans jugement."
+            <span class="pullquote__attr">Thibault Marie, describing Bouteille as a person</span>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="logo.png" alt="Bouteille" class="footer__logo-img" width="48" height="48">
+          <p class="footer__tagline" data-i18n="tagline">A neighbourhood wine bar in Stockel, Brussels.</p>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-i18n="navWines">Wines</h4>
+          <a href="wines.html" class="footer__link" data-i18n="viewWines">Discover the selection</a>
+          <a href="food.html" class="footer__link" data-i18n="navFood">Menu</a>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-i18n="navEvents">Events</h4>
+          <a href="events.html" class="footer__link" data-i18n="viewEvents">See all events</a>
+          <a href="reservations.html" class="footer__link" data-i18n="navReserve">Reserve</a>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-i18n="findUs">Find us</h4>
+          <span class="footer__link">Rue Henrotte 40</span>
+          <span class="footer__link">1150 Woluwe-Saint-Pierre</span>
+          <a href="mailto:hello@bouteillebaravin.be" class="footer__link">hello@bouteillebaravin.be</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2026 Bouteille. All rights reserved.</span>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/bouteille.bar" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

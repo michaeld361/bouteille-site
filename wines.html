@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wines — Bouteille</title>
+  <meta name="description" content="A curated, ever-evolving wine selection at Bouteille. Conventional, natural, biodynamic — from across Europe. Every bottle chosen with care.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍷</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <div class="curtain" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="logo.png" alt="Bouteille" class="nav__logo-img" width="36" height="36">
+      <span class="nav__logo-text">Bouteille</span>
+    </a>
+    <div class="nav__links">
+      <a href="wines.html" class="nav__link" data-i18n="navWines">Wines</a>
+      <a href="food.html" class="nav__link" data-i18n="navFood">Menu</a>
+      <a href="events.html" class="nav__link" data-i18n="navEvents">Events</a>
+      <a href="about.html" class="nav__link" data-i18n="navAbout">About</a>
+      <a href="contact.html" class="nav__link" data-i18n="navContact">Contact</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__lang">
+        <button class="nav__lang-btn active" data-lang="en">EN</button>
+        <span class="nav__lang-sep"></span>
+        <button class="nav__lang-btn" data-lang="fr">FR</button>
+        <span class="nav__lang-sep"></span>
+        <button class="nav__lang-btn" data-lang="nl">NL</button>
+      </div>
+      <a href="reservations.html" class="nav__cta" data-i18n="reserve">Reserve</a>
+    </div>
+    <button class="nav__hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="wines.html" class="nav__overlay-link" data-i18n="navWines">Wines</a>
+    <a href="food.html" class="nav__overlay-link" data-i18n="navFood">Menu</a>
+    <a href="events.html" class="nav__overlay-link" data-i18n="navEvents">Events</a>
+    <a href="about.html" class="nav__overlay-link" data-i18n="navAbout">About</a>
+    <a href="reservations.html" class="nav__overlay-link" data-i18n="navReserve">Reserve</a>
+    <a href="contact.html" class="nav__overlay-link" data-i18n="navContact">Contact</a>
+    <div class="nav__overlay-lang">
+      <button class="nav__overlay-lang-btn active" data-lang="en">EN</button>
+      <button class="nav__overlay-lang-btn" data-lang="fr">FR</button>
+      <button class="nav__overlay-lang-btn" data-lang="nl">NL</button>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-header__title reveal" data-delay="0" data-i18n="winesTitle">The Wines</h1>
+      <p class="page-header__sub reveal" data-delay="1" data-i18n="winesSub">A curated, ever-evolving selection. Conventional, natural, biodynamic — from across Europe. Every bottle chosen with care, priced with honesty.</p>
+    </div>
+  </header>
+
+  <!-- Filter Bar + Wine Grid -->
+  <section class="section section--compact">
+    <div class="container">
+
+      <div class="wine-filters reveal" data-delay="2">
+        <button class="wine-filter active" data-filter="all" data-i18n="allWines">All</button>
+        <button class="wine-filter" data-filter="red" data-i18n="red">Red</button>
+        <button class="wine-filter" data-filter="white" data-i18n="white">White</button>
+        <button class="wine-filter" data-filter="rose" data-i18n="rose">Rosé</button>
+        <button class="wine-filter" data-filter="orange" data-i18n="orange">Orange</button>
+        <button class="wine-filter" data-filter="sparkling" data-i18n="sparkling">Sparkling</button>
+      </div>
+
+      <div class="wine-grid reveal" data-delay="3">
+
+        <!-- 1. Domaine de la Bégude -->
+        <div class="wine-item" data-type="rose">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Bandol Rosé 2023</span>
+            <span class="wine-item__producer">Domaine de la Bégude</span>
+            <span class="wine-item__region">Provence, FR</span>
+            <p class="wine-item__note">Garrigue and white peach. Dry, mineral, persistent.</p>
+          </div>
+          <span class="wine-item__price">€16</span>
+        </div>
+
+        <!-- 2. Gut Oggau -->
+        <div class="wine-item" data-type="white">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Theodora 2022</span>
+            <span class="wine-item__producer">Gut Oggau</span>
+            <span class="wine-item__region">Burgenland, AT</span>
+            <p class="wine-item__note">Wild ferment. Apricot, beeswax, hay.</p>
+          </div>
+          <span class="wine-item__price">€24</span>
+        </div>
+
+        <!-- 3. Envínate -->
+        <div class="wine-item" data-type="red">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Lousas 2021</span>
+            <span class="wine-item__producer">Envínate</span>
+            <span class="wine-item__region">Ribeira Sacra, ES</span>
+            <p class="wine-item__note">Granite-grown Mencía. Dark fruit, slate, smoke.</p>
+          </div>
+          <span class="wine-item__price">€19</span>
+        </div>
+
+        <!-- 4. Domaine Julien Meyer -->
+        <div class="wine-item" data-type="white">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Pinot Blanc 2022</span>
+            <span class="wine-item__producer">Domaine Julien Meyer</span>
+            <span class="wine-item__region">Alsace, FR</span>
+            <p class="wine-item__note">Biodynamic. Crisp apple, almond, chalk.</p>
+          </div>
+          <span class="wine-item__price">€14</span>
+        </div>
+
+        <!-- 5. Château Musar -->
+        <div class="wine-item" data-type="red">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Jeune Rouge 2021</span>
+            <span class="wine-item__producer">Château Musar</span>
+            <span class="wine-item__region">Bekaa Valley, LB</span>
+            <p class="wine-item__note">Cinsault-led. Cherry, spice, Mediterranean herbs.</p>
+          </div>
+          <span class="wine-item__price">€18</span>
+        </div>
+
+        <!-- 6. Claus Preisinger -->
+        <div class="wine-item" data-type="red">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Puszta Libre! 2022</span>
+            <span class="wine-item__producer">Claus Preisinger</span>
+            <span class="wine-item__region">Burgenland, AT</span>
+            <p class="wine-item__note">Natural. Juicy Zweigelt, raspberry, earth.</p>
+          </div>
+          <span class="wine-item__price">€15</span>
+        </div>
+
+        <!-- 7. Domaine de Sulauze -->
+        <div class="wine-item" data-type="rose">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Pomponette 2023</span>
+            <span class="wine-item__producer">Domaine de Sulauze</span>
+            <span class="wine-item__region">Provence, FR</span>
+            <p class="wine-item__note">Organic rosé. Strawberry, thyme, sea breeze.</p>
+          </div>
+          <span class="wine-item__price">€13</span>
+        </div>
+
+        <!-- 8. La Stoppa -->
+        <div class="wine-item" data-type="orange">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Ageno 2019</span>
+            <span class="wine-item__producer">La Stoppa</span>
+            <span class="wine-item__region">Emilia-Romagna, IT</span>
+            <p class="wine-item__note">Skin-contact Malvasia. Amber, dried apricot, tannic.</p>
+          </div>
+          <span class="wine-item__price">€28</span>
+        </div>
+
+        <!-- 9. Catherine & Pierre Breton -->
+        <div class="wine-item" data-type="sparkling">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Pét-Nat Rosé</span>
+            <span class="wine-item__producer">Catherine &amp; Pierre Breton</span>
+            <span class="wine-item__region">Loire, FR</span>
+            <p class="wine-item__note">Cabernet Franc fizz. Wild strawberry, minerals.</p>
+          </div>
+          <span class="wine-item__price">€16</span>
+        </div>
+
+        <!-- 10. Domaine Bott-Geyl -->
+        <div class="wine-item" data-type="white">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Riesling Les Éléments 2021</span>
+            <span class="wine-item__producer">Domaine Bott-Geyl</span>
+            <span class="wine-item__region">Alsace, FR</span>
+            <p class="wine-item__note">Biodynamic. Lemon zest, petrol, limestone.</p>
+          </div>
+          <span class="wine-item__price">€22</span>
+        </div>
+
+        <!-- 11. Radikon -->
+        <div class="wine-item" data-type="orange">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Ribolla Gialla 2018</span>
+            <span class="wine-item__producer">Radikon</span>
+            <span class="wine-item__region">Friuli, IT</span>
+            <p class="wine-item__note">Extended maceration. Amber, walnut, dried flowers.</p>
+          </div>
+          <span class="wine-item__price">€32</span>
+        </div>
+
+        <!-- 12. Suertes del Marqués -->
+        <div class="wine-item" data-type="white">
+          <div class="wine-item__info">
+            <span class="wine-item__name">Vidonia 2022</span>
+            <span class="wine-item__producer">Suertes del Marqués</span>
+            <span class="wine-item__region">Tenerife, ES</span>
+            <p class="wine-item__note">Volcanic Listán Blanco. Saline, citrus, mineral.</p>
+          </div>
+          <span class="wine-item__price">€20</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="logo.png" alt="Bouteille" class="footer__logo-img" width="48" height="48">
+          <p class="footer__tagline" data-i18n="tagline">A neighbourhood wine bar in Stockel, Brussels.</p>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-i18n="navWines">Wines</h4>
+          <a href="wines.html" class="footer__link" data-i18n="viewWines">Discover the selection</a>
+          <a href="food.html" class="footer__link" data-i18n="navFood">Menu</a>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-i18n="navEvents">Events</h4>
+          <a href="events.html" class="footer__link" data-i18n="viewEvents">See all events</a>
+          <a href="reservations.html" class="footer__link" data-i18n="navReserve">Reserve</a>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-i18n="findUs">Find us</h4>
+          <span class="footer__link">Rue Henrotte 40</span>
+          <span class="footer__link">1150 Woluwe-Saint-Pierre</span>
+          <a href="mailto:hello@bouteillebaravin.be" class="footer__link">hello@bouteillebaravin.be</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2026 Bouteille. All rights reserved.</span>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/bouteille.bar" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
