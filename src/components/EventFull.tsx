@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { createTranslator, type Language } from '@/lib/i18n'
+import { urlFor } from '@/sanity/image'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function EventFull({ event, lang }: { event: any; lang: Language }) {
@@ -31,6 +32,7 @@ export default function EventFull({ event, lang }: { event: any; lang: Language 
 
   if (!event) return null
 
+  const imageUrl = event.image?.asset ? urlFor(event.image).width(1920).url() : '/images/event.jpg'
   const dateStr = event.date
     ? new Date(event.date).toLocaleDateString(lang === 'fr' ? 'fr-BE' : lang === 'nl' ? 'nl-BE' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
     : ''
@@ -39,7 +41,7 @@ export default function EventFull({ event, lang }: { event: any; lang: Language 
     <section className="event-full">
       <div className="event-full__image-wrap">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/event.jpg" alt={t(event.title) || 'Event at Bouteille'} className="event-full__image" />
+        <img src={imageUrl} alt={t(event.title) || 'Event at Bouteille'} className="event-full__image" />
       </div>
       <div className="event-full__content">
         <span className="event-full__date t-mono">{dateStr}</span>

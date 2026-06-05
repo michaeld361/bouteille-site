@@ -9,7 +9,7 @@ export default defineConfig({
   name: 'bouteille',
   title: 'Bouteille CMS',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'un3ffdsw',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 
   basePath: '/studio',

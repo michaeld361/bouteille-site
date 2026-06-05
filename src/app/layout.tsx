@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Outfit, JetBrains_Mono } from 'next/font/google'
+import { Cormorant_Garamond, Outfit, JetBrains_Mono, Josefin_Sans } from 'next/font/google'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -21,6 +21,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['300', '400'],
   variable: '--mono',
+  display: 'swap',
+})
+
+const josefinSans = Josefin_Sans({
+  subsets: ['latin'],
+  weight: ['300'],
+  variable: '--display',
   display: 'swap',
 })
 
@@ -47,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${cormorant.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
+      className={`${cormorant.variable} ${outfit.variable} ${jetbrainsMono.variable} ${josefinSans.variable}`}
       suppressHydrationWarning
     >
       <body>{children}</body>

@@ -45,7 +45,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             }
             if (block._type === 'pullquoteBlock') {
               return (
-                <blockquote key={block._key} className="editorial__quote reveal" data-delay={i + 2}>
+                <blockquote key={block._key} className="pullquote reveal" data-delay={i + 2}>
                   <p>&ldquo;{t(block.quote)}&rdquo;</p>
                   {block.attribution && <cite>— {block.attribution}</cite>}
                 </blockquote>
@@ -58,7 +58,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                   <h2 className="section__label">
                     {lang === 'fr' ? "L'Équipe" : lang === 'nl' ? 'Het Team' : 'The Team'}
                   </h2>
-                  <div className="team__grid">
+                  <div className="team-grid">
                     {teamMembers?.map((member: any) => (
                       <div key={member._id} className="team-member">
                         <div className="team-member__photo" />
@@ -79,7 +79,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
               <h2 className="section__label">
                 {lang === 'fr' ? "L'Équipe" : lang === 'nl' ? 'Het Team' : 'The Team'}
               </h2>
-              <div className="team__grid">
+              <div className="team-grid">
                 {members.map((member: any) => (
                   <div key={member._id} className="team-member">
                     <div className="team-member__photo" />

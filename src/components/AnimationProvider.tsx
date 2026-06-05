@@ -1,30 +1,88 @@
 'use client'
 
-import { useEffect, ReactNode } from 'react'
+import { useEffect, useRef, ReactNode } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function AnimationProvider({ children }: { children: ReactNode }) {
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let lenis: any
+  const pathname = usePathname()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const lenisRef = useRef<any>(null)
+  const rafRef = useRef<number>(0)
+  const revealObserverRef = useRef<IntersectionObserver | null>(null)
 
-    async function initAnimations() {
+  // ── Reveal system (native IntersectionObserver — runs on every page) ──
+  useEffect(() => {
+    // Create a single IntersectionObserver for all reveal elements
+    revealObserverRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement
+            const delay = (Number(el.dataset.delay) || 0) * 0.15
+            if (delay > 0) {
+              setTimeout(() => el.classList.add('visible'), delay * 1000)
+            } else {
+              el.classList.add('visible')
+            }
+            revealObserverRef.current?.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.05 }
+    )
+
+    function observeRevealElements() {
+      // Generic .reveal elements
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
+        revealObserverRef.current?.observe(el)
+      })
+
+      // Sub-page elements (staggered by index within their group)
+      const subElements = document.querySelectorAll(
+        '.event-card:not(.visible), .menu-item:not(.visible), .team-member:not(.visible), .wine-item:not(.visible)'
+      )
+      subElements.forEach((el, i) => {
+        const htmlEl = el as HTMLElement
+        if (!htmlEl.dataset.delay) {
+          htmlEl.dataset.delay = String((i % 4) * 0.5)
+        }
+        htmlEl.classList.add('reveal')
+        revealObserverRef.current?.observe(el)
+      })
+    }
+
+    // Run immediately
+    observeRevealElements()
+
+    // Also run after a short delay to catch any late-rendered content
+    const timer = setTimeout(observeRevealElements, 100)
+
+    return () => {
+      clearTimeout(timer)
+      revealObserverRef.current?.disconnect()
+    }
+  }, [pathname]) // Re-run on every page navigation
+
+  // ── Lenis + GSAP extras (init once) ──
+  useEffect(() => {
+    async function initExtras() {
       const { default: gsap } = await import('gsap')
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       const { default: Lenis } = await import('lenis')
 
-      gsap.registerPlugin(ScrollTrigger)
-
-      lenis = new Lenis({
+      const lenis = new Lenis({
         duration: 2.0,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         smoothWheel: true,
         wheelMultiplier: 0.8,
       })
+      lenisRef.current = lenis
 
-      lenis.on('scroll', ScrollTrigger.update)
-      gsap.ticker.add((time: number) => lenis.raf(time * 1000))
-      gsap.ticker.lagSmoothing(0)
+      function raf(time: number) {
+        lenis.raf(time)
+        rafRef.current = requestAnimationFrame(raf)
+      }
+      rafRef.current = requestAnimationFrame(raf)
 
       // Marquee skew on velocity
       const marqueeTrack = document.querySelector('.marquee__track') as HTMLElement
@@ -63,36 +121,13 @@ export default function AnimationProvider({ children }: { children: ReactNode })
           nav.classList.toggle('scrolled', !e.isIntersecting)
         }, { threshold: 0, rootMargin: '-72px 0px 0px 0px' }).observe(sentinel)
       }
-
-      // Generic reveals
-      gsap.utils.toArray('.reveal').forEach((el: unknown) => {
-        const element = el as HTMLElement
-        gsap.from(element, {
-          scrollTrigger: { trigger: element, start: 'top bottom', once: true },
-          y: 24, opacity: 0, duration: 1,
-          delay: (Number(element.dataset.delay) || 0) * 0.15,
-          ease: 'power3.out',
-          onComplete: () => element.classList.add('visible'),
-        })
-      })
-
-      // Sub-page element reveals
-      gsap.utils.toArray('.event-card, .menu-item, .team-member, .wine-item').forEach((el: unknown, i: number) => {
-        const element = el as HTMLElement
-        gsap.from(element, {
-          scrollTrigger: { trigger: element, start: 'top bottom', once: true },
-          y: 20, opacity: 0, duration: 0.7,
-          delay: (i % 4) * 0.08, ease: 'power3.out',
-        })
-      })
-
-      ScrollTrigger.refresh()
     }
 
-    initAnimations()
+    initExtras()
 
     return () => {
-      if (lenis) lenis.destroy()
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      if (lenisRef.current) lenisRef.current.destroy()
     }
   }, [])
 

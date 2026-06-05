@@ -4,9 +4,10 @@ import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from './lib/i18n'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Skip studio, api, static files, and Next.js internals
+  // Skip studio, admin, api, static files, and Next.js internals
   if (
     pathname.startsWith('/studio') ||
+    pathname.startsWith('/admin') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
     pathname.includes('.') // Static files
@@ -36,5 +37,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|studio|api).*)'],
+  matcher: ['/((?!_next|studio|admin|api).*)'],
 }

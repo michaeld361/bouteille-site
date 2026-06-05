@@ -24,7 +24,7 @@ export default function LocationSection({ settings, navigation, lang }: { settin
               {settings?.address?.country || 'Brussels'}
             </span>
             {settings?.googleMapsUrl && (
-              <a href={settings.googleMapsUrl} target="_blank" rel="noopener" className="btn" style={{ marginTop: '8px', alignSelf: 'flex-start' }} data-magnetic>
+              <a href={settings.googleMapsUrl} target="_blank" rel="noopener" className="btn" style={{ marginTop: '8px', alignSelf: 'flex-start' }}>
                 {t(navigation?.getDirectionsLabel) || 'Get directions'}
               </a>
             )}
