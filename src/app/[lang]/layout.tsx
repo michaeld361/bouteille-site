@@ -11,6 +11,9 @@ export function generateStaticParams() {
   return SUPPORTED_LANGUAGES.map((lang) => ({ lang }))
 }
 
+// Re-fetch from Sanity every 60 seconds (ISR)
+export const revalidate = 60
+
 export default async function LangLayout({
   children,
   params,

@@ -7,7 +7,7 @@ export const client = createClient({
   projectId: projectId || 'placeholder',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2026-05-01',
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: false, // ISR handles caching; always fetch fresh from Sanity API
 })
 
 /**
